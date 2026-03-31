@@ -1,0 +1,50 @@
+{
+  "train": {
+    "Actinic keratoses": 693,
+    "Basal cell carcinoma": 2658,
+    "Benign keratosis-like lesions": 2099,
+    "Chickenpox": 900,
+    "Cowpox": 792,
+    "Dermatofibroma": 391,
+    "HFMD": 1932,
+    "Healthy": 1368,
+    "Measles": 660,
+    "Melanocytic nevi": 10300,
+    "Melanoma": 3617,
+    "Monkeypox": 3408,
+    "Squamous cell carcinoma": 702,
+    "Vascular lesions": 352
+  },
+  "val": {
+    "Actinic keratoses": 86,
+    "Basal cell carcinoma": 332,
+    "Benign keratosis-like lesions": 262,
+    "Chickenpox": 112,
+    "Cowpox": 99,
+    "Dermatofibroma": 23,
+    "HFMD": 241,
+    "Healthy": 171,
+    "Measles": 82,
+    "Melanocytic nevi": 1287,
+    "Melanoma": 452,
+    "Monkeypox": 426,
+    "Squamous cell carcinoma": 62,
+    "Vascular lesions": 25
+  },
+  "test": {
+    "Actinic keratoses": 88,
+    "Basal cell carcinoma": 333,
+    "Benign keratosis-like lesions": 263,
+    "Chickenpox": 113,
+    "Cowpox": 99,
+    "Dermatofibroma": 25,
+    "HFMD": 242,
+    "Healthy": 171,
+    "Measles": 83,
+    "Melanocytic nevi": 1288,
+    "Melanoma": 453,
+    "Monkeypox": 426,
+    "Squamous cell carcinoma": 64,
+    "Vascular lesions": 26
+  }
+}
