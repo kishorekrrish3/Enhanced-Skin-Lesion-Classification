@@ -21,28 +21,22 @@ client/out/
 # ----------------------------
 # ⚙️ Backend (server) & Core Logic
 # ----------------------------
-# We allow the server and core folders to be tracked
 !server/
 !core/
 !server/api/__init__.py
-
-# Ensure results/metrics and plots are pushed
 !core/results/metrics/
 !core/results/plots/
 
 # ----------------------------
-# 💾 Data & Weights (THE "TRICKY" PART)
+# 💾 Large Weights (Git LFS)
+# ----------------------------
+# These will now be tracked by Git LFS
+# Ensure you have run 'git lfs track "*.pth"'
+weights/
+!weights/*.pth
+
+# ----------------------------
+# 📊 Datasets (KEEP IGNORED)
 # ----------------------------
 data/
 datasets/
-
-# IGNORE huge weights over 100MB (GitHub limit)
-# Note: baseline_simplecnn (205MB) will be ignored to prevent push errors
-# Smaller models (ResNet50 ~98MB) will be whitelisted below
-*.pth 
-!weights/resnet50_best.pth
-!weights/baseline_resnet50_best.pth
-!weights/ImprovedResNet50.pth
-!weights/Dermatofibroma.pth
-!weights/Vascular lesions.pth
-!weights/Squamous cell carcinoma.pth
