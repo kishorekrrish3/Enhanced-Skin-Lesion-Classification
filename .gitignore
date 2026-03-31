@@ -24,6 +24,8 @@ client/out/
 !server/
 !core/
 !server/api/__init__.py
+!server/__init__.py
+!core/__init__.py
 !core/results/metrics/
 !core/results/plots/
 
