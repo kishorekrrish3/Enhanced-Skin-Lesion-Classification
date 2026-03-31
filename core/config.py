@@ -5,8 +5,8 @@ import torch
 # PATHS
 # -------------------------------
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, "dataset", "skin-ds")
-RESULTS_DIR = os.path.join(BASE_DIR, "pipeline", "results")
+DATA_DIR = os.path.join(BASE_DIR, "data", "skin-ds")
+RESULTS_DIR = os.path.join(BASE_DIR, "core", "results")
 
 # Sub-directories for results
 METRICS_DIR = os.path.join(RESULTS_DIR, "metrics")

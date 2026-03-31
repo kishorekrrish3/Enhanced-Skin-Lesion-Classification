@@ -9,10 +9,10 @@ import cv2
 from PIL import Image
 import io
 
-from pipeline.config import DEVICE, CLASS_NAMES, METRICS_DIR, NUM_CLASSES
-from pipeline.models import SimpleCNN, ImprovedResNet50
-from pipeline.augmentation import get_val_transform
-from pipeline.gradcam import generate_heatmap_overlay, GradCAM
+from core.config import DEVICE, CLASS_NAMES, METRICS_DIR, NUM_CLASSES
+from core.models import SimpleCNN, ImprovedResNet50
+from core.augmentation import get_val_transform
+from core.gradcam import generate_heatmap_overlay, GradCAM
 
 router = APIRouter()
 
