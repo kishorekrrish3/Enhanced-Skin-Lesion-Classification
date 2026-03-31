@@ -1,4 +1,4 @@
-# 🔬 Clinical Skin Lesion Classifier
+# 🔬 Enhanced Skin Lesion Classification
 
 An end-to-end medical AI application for classifying skin lesions using Deep Learning (ResNet50) and explainable AI (Grad-CAM).
 
