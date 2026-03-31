@@ -1,0 +1,39 @@
+import os
+from PIL import Image
+
+# Use an absolute path or resolve relative to the script's location
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATASET_PATH = os.path.abspath(os.path.join(SCRIPT_DIR, "../dataset/skin-ds/train"))
+
+if not os.path.exists(DATASET_PATH):
+    print(f"Error: Dataset path not found: {DATASET_PATH}")
+    exit(1)
+
+found_image = False
+
+for class_name in os.listdir(DATASET_PATH):
+    class_path = os.path.join(DATASET_PATH, class_name)
+    
+    if not os.path.isdir(class_path):
+        continue
+
+    for img_name in os.listdir(class_path):
+        img_path = os.path.join(class_path, img_name)
+
+        try:
+            with Image.open(img_path) as img:
+                w, h = img.size
+                print(f"\nImage Found: {img_name}")
+                print(f"Class: {class_name}")
+                print(f"Resolution: {w}x{h} (Width x Height)")
+                found_image = True
+                break # Break inner loop
+        except Exception:
+            continue
+    
+    if found_image:
+        break # Break outer loop
+
+if not found_image:
+    print("No valid images found in the dataset path.")
+

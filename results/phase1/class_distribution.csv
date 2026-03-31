@@ -1,0 +1,15 @@
+Class,test,train,val
+Actinic keratoses,88,693,86
+Basal cell carcinoma,333,2658,332
+Benign keratosis-like lesions,263,2099,262
+Chickenpox,113,900,112
+Cowpox,99,792,99
+Dermatofibroma,25,191,23
+HFMD,242,1932,241
+Healthy,171,1368,171
+Measles,83,660,82
+Melanocytic nevi,1288,10300,1287
+Melanoma,453,3617,452
+Monkeypox,426,3408,426
+Squamous cell carcinoma,64,502,62
+Vascular lesions,26,202,25
