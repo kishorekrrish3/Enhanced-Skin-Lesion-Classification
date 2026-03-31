@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
 
-from .api.router import router
+from api.router import router
 
 app = FastAPI(title="Skin Lesion API")
 
