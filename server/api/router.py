@@ -8,7 +8,6 @@ import numpy as np
 import cv2
 from PIL import Image
 import io
-
 from core.config import DEVICE, CLASS_NAMES, METRICS_DIR, NUM_CLASSES
 from core.models import SimpleCNN, ImprovedResNet50
 from core.augmentation import get_val_transform
@@ -26,7 +25,7 @@ def get_model(model_name: str):
     
     if model_name == "SimpleCNN":
         model = SimpleCNN(num_classes=NUM_CLASSES)
-        path = os.path.join(base_dir, "phase2", "saved_models", "baseline_simplecnn_best.pth")
+        path = os.path.join(base_dir, "weights", "baseline_simplecnn_best.pth")
     elif model_name == "BaselineResNet":
         from torchvision import models as tv_models
         from torch import nn
@@ -37,10 +36,10 @@ def get_model(model_name: str):
             nn.Dropout(0.5),
             nn.Linear(512, NUM_CLASSES)
         )
-        path = os.path.join(base_dir, "phase2", "saved_models", "baseline_resnet50_best.pth")
+        path = os.path.join(base_dir, "weights", "baseline_resnet50_best.pth")
     elif model_name == "ImprovedResNet50":
         model = ImprovedResNet50(num_classes=NUM_CLASSES)
-        path = os.path.join(base_dir, "pipeline", "results", "models", "ImprovedResNet50.pth")
+        path = os.path.join(base_dir, "core", "results", "models", "ImprovedResNet50.pth")
     else:
         raise HTTPException(status_code=400, detail="Invalid model name")
 
@@ -119,7 +118,6 @@ async def predict_image(file: UploadFile = File(...), model_name: str = Form(...
                 
             grad_cam = GradCAM(model)
             cam, _ = grad_cam.generate(img_tensor, class_idx=pred_idx)
-            grad_cam.remove_hooks()
             overlay = generate_heatmap_overlay(cv2.resize(original_np, (224, 224)), cam)
             
             for param in target_layer.parameters():

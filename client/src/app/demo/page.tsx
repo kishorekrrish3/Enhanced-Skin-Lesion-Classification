@@ -3,27 +3,17 @@
 import { useState, useRef } from "react";
 import { predictImage } from "@/lib/api";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { X, Loader2, Maximize, ScanSearch, CheckCircle2 } from "lucide-react";
+import { Upload, X, Loader2, Maximize, ScanSearch, CheckCircle2 } from "lucide-react";
 import * as motion from "framer-motion/client";
-
-interface ProbItem {
-  class: string;
-  probability: number;
-}
-
-interface PredictionResult {
-  prediction: string;
-  heatmap?: string;
-  all_probabilities: ProbItem[];
-}
 
 export default function Demo() {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [modelName, setModelName] = useState("ImprovedResNet50");
   const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<PredictionResult | null>(null);
+  const [result, setResult] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -51,9 +41,8 @@ export default function Demo() {
     try {
       const data = await predictImage(file, modelName);
       setResult(data);
-    } catch (err: unknown) {
-      const errorMessage = err instanceof Error ? err.message : "An unknown error occurred during analysis";
-      setError(errorMessage);
+    } catch (err: any) {
+      setError(err.message || "Failed to analyze image");
     } finally {
       setLoading(false);
     }
@@ -198,13 +187,13 @@ export default function Demo() {
                 <div className="flex flex-col justify-center space-y-8">
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-widest text-primary mb-2">Primary Diagnosis Vector</div>
-                    <div className="font-display text-3xl xl:text-4xl uppercase font-black leading-tight overflow-wrap-anywhere border-l-4 border-primary pl-4">{result.prediction}</div>
+                    <div className="font-display text-3xl xl:text-4xl uppercase font-black leading-tight break-words border-l-4 border-primary pl-4">{result.prediction}</div>
                   </div>
                   
                   <div>
                     <div className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3 border-b border-border pb-2">Confidence Scores</div>
                     <div className="space-y-4 max-h-[250px] pr-4 overflow-y-auto custom-scrollbar">
-                      {result.all_probabilities.map((item, idx) => (
+                      {result.all_probabilities.map((item: any, idx: number) => (
                         <div key={idx} className="space-y-2 opacity-80 hover:opacity-100 transition-opacity">
                           <div className="flex justify-between items-end">
                             <span className={`text-[10px] font-bold uppercase tracking-widest ${idx === 0 ? "text-primary" : "text-muted-foreground"}`}>{item.class}</span>

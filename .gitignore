@@ -1,45 +1,29 @@
-# ----------------------------
-# 🧹 OS & Temp 
-# ----------------------------
-.DS_Store
-Thumbs.db
+# Python
 __pycache__/
 *.py[cod]
-.env
-.venv
+*$py.class
 venv/
-.agent/
-.temp_ag_kit/
+env/
+.env
 
-# ----------------------------
-# 🎨 Frontend (client)
-# ----------------------------
-client/node_modules/
-client/.next/
-client/out/
+# Next.js
+node_modules/
+.next/
+out/
+build/
+.DS_Store
 
-# ----------------------------
-# ⚙️ Backend (server) & Core Logic
-# ----------------------------
-!server/
-!core/
-!server/api/__init__.py
-!server/__init__.py
-!core/__init__.py
-!core/results/metrics/
-!core/results/plots/
-
-# ----------------------------
-# 💾 Large Weights (Git LFS)
-# ----------------------------
-# These will now be tracked by Git LFS
-# Ensure you have run 'git lfs track "*.pth"'
-weights/
-!weights/*.pth
-
-# ----------------------------
-# 📊 Datasets (KEEP IGNORED)
-# ----------------------------
+# Data and Weights (Large files - do not push to GitHub)
 data/
-datasets/
+weights/
+results/
+core/results/
+pipeline/
 
+# Agent/Temp Files
+.temp_ag_kit/
+.agent/
+*.log
+*.txt
+proper_error_log.txt
+error_log.txt

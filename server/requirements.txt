@@ -1,11 +1,10 @@
-fastapi
-uvicorn
-python-multipart
 numpy
 pandas
+matplotlib
+seaborn
 opencv-python
 torch
 torchvision
 tqdm
 albumentations
-matplotlib
+streamlit

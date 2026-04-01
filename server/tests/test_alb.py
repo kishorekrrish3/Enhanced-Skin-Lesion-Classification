@@ -1,5 +1,5 @@
 try:
-    import pipeline.run_pipeline
+    import core.run_pipeline
     print("SUCCESS")
 except Exception as e:
     import traceback

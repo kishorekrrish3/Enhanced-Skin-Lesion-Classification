@@ -1,41 +1,17 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { fetchMetrics } from "@/lib/api";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Loader2, AlertCircle, ActivitySquare, Network, Layers, X, Maximize, ScanSearch, CheckCircle2 } from "lucide-react";
+import { Loader2, AlertCircle, ActivitySquare, Network, Layers } from "lucide-react";
 import * as motion from "framer-motion/client";
-
-interface PerformanceMetrics {
-  accuracy: number;
-  macro_recall: number;
-  weighted_f1: number;
-}
-
-interface AllMetrics {
-  SimpleCNN: PerformanceMetrics;
-  BaselineResNet: PerformanceMetrics;
-  ImprovedResNet50: PerformanceMetrics;
-}
-
-interface ProbItem {
-  class: string;
-  probability: number;
-}
-
-interface PredictionResult {
-  prediction: string;
-  heatmap?: string;
-  all_probabilities: ProbItem[];
-}
 
 const STATIC_BASE_URL = process.env.NEXT_PUBLIC_API_URL?.replace("/api", "/static") || "http://localhost:8000/static";
 
 export default function Dashboard() {
-  const [metrics, setMetrics] = useState<AllMetrics | null>(null);
+  const [metrics, setMetrics] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -66,7 +42,7 @@ export default function Dashboard() {
     );
   }
 
-  const renderModelCard = (name: string, data: PerformanceMetrics | undefined, icon: React.ElementType, isHighlight = false) => {
+  const renderModelCard = (name: string, data: any, icon: any, isHighlight = false) => {
     if (!data) return null;
     const Icon = icon;
     return (
