@@ -119,6 +119,7 @@ async def predict_image(file: UploadFile = File(...), model_name: str = Form(...
                 
             grad_cam = GradCAM(model)
             cam, _ = grad_cam.generate(img_tensor, class_idx=pred_idx)
+            grad_cam.remove_hooks()
             overlay = generate_heatmap_overlay(cv2.resize(original_np, (224, 224)), cam)
             
             for param in target_layer.parameters():

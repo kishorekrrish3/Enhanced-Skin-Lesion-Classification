@@ -25,8 +25,12 @@ class GradCAM:
         # We hook into layer4 of the ResNet50
         target_layer = resnet_model.layer4[-1].conv3
         
-        target_layer.register_forward_hook(self.save_feature_maps)
-        target_layer.register_backward_hook(self.save_gradients)
+        self.forward_handle = target_layer.register_forward_hook(self.save_feature_maps)
+        self.backward_handle = target_layer.register_full_backward_hook(self.save_gradients)
+
+    def remove_hooks(self):
+        self.forward_handle.remove()
+        self.backward_handle.remove()
 
     def save_feature_maps(self, module, input, output):
         self.feature_maps = output.detach()

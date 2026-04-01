@@ -26,7 +26,15 @@ interface PredictionResult {
 }
 
 // We assume the backend is running on localhost:8000 during development
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+let API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+
+// Fix for production deployments where the trailing /api might be missing in the env var
+if (API_BASE_URL && API_BASE_URL.startsWith('http')) {
+  API_BASE_URL = API_BASE_URL.replace(/\/$/, ''); // strip trailing slash
+  if (!API_BASE_URL.endsWith('/api')) {
+    API_BASE_URL = API_BASE_URL + '/api';
+  }
+}
 
 export async function fetchMetrics(): Promise<AllMetrics | null> {
   try {
